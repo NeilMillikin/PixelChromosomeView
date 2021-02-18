@@ -1,0 +1,5 @@
+/venv/
+/demo_raw_dna/
+*.DS_Store
+*.idea
+*.iml
