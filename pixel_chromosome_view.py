@@ -54,17 +54,12 @@ from itertools import combinations
 
 from PIL import Image, ImageDraw, ImageFont
 
-# There are TWO MANDATORY settings:
-
-"""
-There are TWO MANDATORY settings:
-"""
-
+# There are only TWO MANDATORY settings:
 DATA_FILE_DIRECTORY = 'demo_raw_dna'
 siblings_to_render = ['JULIE', 'ALLISON', 'COLLETTE']
 
 """
-raw DNA file names must:
+NOTE: raw DNA file names must:
 1) contain name of source vendor (i.e. Ancestry, 23andMe, MyHeritage, etc
 2) contain person's name exactly as listed in 'siblings_to_render' below
 3) contain the word 'raw'
