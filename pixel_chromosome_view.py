@@ -55,8 +55,8 @@ from itertools import combinations
 from PIL import Image, ImageDraw, ImageFont
 
 # There are only TWO MANDATORY settings:
-DATA_FILE_DIRECTORY = 'demo_raw_dna'
-siblings_to_render = ['JULIE', 'ALLISON', 'COLLETTE']
+DATA_FILE_DIRECTORY = 'raw_dna'
+siblings_to_render = ['JULIE', 'ANDREW', 'JANE']
 
 """
 NOTE: raw DNA file names must:
