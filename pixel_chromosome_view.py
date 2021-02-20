@@ -12,13 +12,10 @@
 
     The process for analyzing similar data sets has been termed "Visual Phasing"
 
-    To use this program,  original genetic match pair data must be copied
-    from GEDmatch.com or by similar sources.  Once inserted into this program,
+    To use this program,  original raw DNA must be downloaded from
+    an original DNA testing vendor, such as AncestryDNA, MyHeritage, 23andMe
+    or similar sources.  Once inserted into this program,
     the data is parsed, analyzed and graphically represented.
-
-    There are facilities for overriding original data, and for testing
-    against hypothetical recombination points, based on matches
-    between individual siblings compared to other known relatives.
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -54,45 +51,7 @@ from itertools import combinations
 
 from PIL import Image, ImageDraw, ImageFont
 
-# There are only TWO MANDATORY settings:
-DATA_FILE_DIRECTORY = 'raw_dna'
-siblings_to_render = ['JULIE', 'ANDREW', 'JANE']
-
-"""
-NOTE: raw DNA file names must:
-1) contain name of source vendor (i.e. Ancestry, 23andMe, MyHeritage, etc
-2) contain person's name exactly as listed in 'siblings_to_render' below
-3) contain the word 'raw'
-4) lastly, raw data musst must be in  .txt files
-
-example: 23andMe_JULIE_raw_dna.txt
-
-copy all relevant raw dna files into the directory your specify
-"""
-# optionally you can compare the siblings with one additional relative
-extra_match = ''
-
-# removes a lot of 'noise' SNPs that don't contribute to the analysis
-FILTER_COMPLETELY_MATCHED_SEGMENTS = True
-
-##### optional settings to change appearance of rendered chromosome pairs  ###
-FULLY_IDENTICAL_SNP_COLOR = 'limegreen'
-NO_MATCH_SNP_COLOR = 'red'
-HALF_IDENTICAL_SNP_COLOR = 'yellow'
-BACKGROUND_COLOR = 'lightsteelblue'
-CHROMOSOME_BASE_COLOR = 'white'
-WIDTH_OF_SNP_LINE = 1
-HEIGHT_OF_CHROMOSOME_IMAGE = 100
-SPACE_BETWEEN_MATCHES = 50
-CHROM_PAGE_LEFT_BORDER = 450
-CHROM_PAGE_TEXT_BORDER = 50
-CHROM_PAGE_TEXT_FONT_SIZE = 60
-CHROM_PAGE_RIGHT_BORDER = 50
-CHROM_PAGE_TOP_BORDER = 150
-CHROM_PAGE_TITLE_SPACE = 200
-CHROM_PAGE_BOTTOM_BORDER = 150
-MINIMUM_PAGE_WIDTH = 1750
-
+from pixel_config import *
 
 VERBOSITY = 2
 
@@ -345,8 +304,8 @@ def insert_combo_match_type_into_common_key_SNP_dict(
         common_key_SNP_dict[SNP]['position'] = SNP
 
         for match_pair_combination in match_pair_combinations:
-            mp_abbr = "{0}_{1}_Match".format(match_pair_combination[0][0],
-                                             match_pair_combination[1][0])
+            mp_abbr = "{0}_{1}_Match".format(match_pair_combination[0][:3],
+                                             match_pair_combination[1][:3])
 
             mpA = common_key_SNP_dict[SNP][
                 "{0}".format(match_pair_combination[0])]
@@ -426,10 +385,10 @@ def show_match_graphics(
     file_lines = len(processed_and_sorted_SNP_dict_table)
 
     if FILTER_COMPLETELY_MATCHED_SEGMENTS:
-        title = "Pixel View GEDmatch Chr {0} -- filtered".format(
+        title = "Pixel View Raw SNPs for Chr {0} -- filtered".format(
             CHROMOSOME_TO_RENDER)
     else:
-        title = "Pixel View GEDmatch Chr {0} -- unfiltered".format(
+        title = "Pixel View Raw SNPs for Chr {0} -- unfiltered".format(
             CHROMOSOME_TO_RENDER)
 
     matches_to_show = len(match_pair_combinations)
@@ -460,8 +419,8 @@ def show_match_graphics(
 
     for match_pair_combination in match_pair_combinations:
 
-        mp_abbr = "{0}_{1}_Match".format(match_pair_combination[0][0],
-                                         match_pair_combination[1][0])
+        mp_abbr = "{0}_{1}_Match".format(match_pair_combination[0][:3],
+                                         match_pair_combination[1][:3])
 
         base_position = 0
 
