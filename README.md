@@ -65,9 +65,7 @@ in the format of .txt files.  This can easily be done with
 Excel or other spreadsheet programs.
 
 
-**Edit these two lines near the top of script in a text editor**
-
-**Edit the pixel_config.py file: Set these two variables**
+###Edit the pixel_config.py file to set these two variables:
 ```
 DATA_FILE_DIRECTORY = 'raw_dna'
 siblings_to_render = ['JULIE', 'ANDREW', 'JANE']
