@@ -32,9 +32,13 @@ Install as `pip install PILLOW`
 **Verify Installation**
 In a command prompt (windows) or terminal (mac):
 
-type `which Python3` to verify Python3 installation on a Mac
-type `where Python3` to verify Python3 installation on Windows
-type `python3` and then, at the resulting `>>>` prompt, type `import PIL`
+Type `which Python3` to verify Python3 installation on a Mac
+
+Type `where Python3` to verify Python3 installation on Windows
+
+All systems: type `python3` and then, at the resulting `>>>` prompt:
+
+Type `import PIL`
 
 If no errors, you are good to go.
 
