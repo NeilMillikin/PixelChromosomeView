@@ -54,6 +54,7 @@ from PIL import Image, ImageDraw, ImageFont
 from pixel_config import *
 
 VERBOSITY = 2
+font_library_path = "fonts"
 
 helpful_debugging_utility_usages = """
 
@@ -412,8 +413,8 @@ def show_match_graphics(
 
     page_draw = ImageDraw.Draw(chrom_whole_page_image)
     page_draw.text((CHROM_PAGE_LEFT_BORDER, CHROM_PAGE_TOP_BORDER), title,
-            font=ImageFont.truetype("Arial Bold.ttf",
-                                    CHROM_PAGE_TEXT_FONT_SIZE), fill='black')
+            font=ImageFont.truetype(os.path.join(font_library_path, "Arial Bold.ttf"),
+                                    CHROM_TITLE_TEXT_FONT_SIZE), fill='black')
 
     match_shown_number = 0
 
@@ -461,7 +462,10 @@ def show_match_graphics(
 
         draw = ImageDraw.Draw(chrom_whole_page_image)
 
-        arial = ImageFont.truetype("Arial Bold.ttf", CHROM_PAGE_TEXT_FONT_SIZE)
+        arial = ImageFont.truetype(
+                os.path.join(font_library_path,
+                             "Arial Bold.ttf"),
+                CHROM_MATCH_TEXT_FONT_SIZE)
 
         draw.text((
                 CHROM_PAGE_TEXT_BORDER,

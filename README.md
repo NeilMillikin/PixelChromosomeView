@@ -4,9 +4,9 @@
 
 Genetic genealogists have developed a process, commonly known as "Visual Phasing", that facilitates locating and assigning genetic recombination points in a given chromosome.
 
-The general procedure is to compare the fully identical regions (FIR) and half identical regions (HIR) between pairs of siblings in a group of three or more.  
+The general procedure is to compare the fully identical regions (FIR) and half identical regions (HIR) between pairs of siblings in a group of three or more.
 
-The data for Visual Phasing is derived from one-to-one comparison tools, such as are provided by GEDmatch.com or other sources.  
+The data for Visual Phasing is derived from one-to-one comparison tools, such as are provided by GEDmatch.com or other sources.
 
 The visual phasing process can be cumbersome and complicated because the GEDmatch.com tools allow only one-to-one renderings of only two siblings at a time, each in a separate report.
 
@@ -14,7 +14,7 @@ Many times these separate reports don't play well together due to different test
 
 This is a utility program that presents side-by-side visual comparison among a group of siblings, displaying each possible sibling pair in a compatible format.
 
-![example image](example_2_pixel_chromosome_view.PNG)
+![example image](example_pixel_chromosome_view.PNG)
 
 ## Installation and use
 
@@ -32,9 +32,9 @@ Install as `pip install PILLOW`
 **Verify Installation**
 In a command prompt (windows) or terminal (mac):
 
-type `which Python3` to verify Python3 installation
-
-type `python3` and then, at the resulting >>> prompt, type `import PIL`
+type `which Python3` to verify Python3 installation on a Mac
+type `where Python3` to verify Python3 installation on Windows
+type `python3` and then, at the resulting `>>>` prompt, type `import PIL`
 
 If no errors, you are good to go.
 
