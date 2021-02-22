@@ -54,7 +54,9 @@ from PIL import Image, ImageDraw, ImageFont
 from pixel_config import *
 
 VERBOSITY = 2
-font_library_path = "fonts"
+
+this_dir = os.path.dirname(os.path.realpath('__file__'))
+font_library_path = os.path.join(this_dir, "fonts")
 
 helpful_debugging_utility_usages = """
 
