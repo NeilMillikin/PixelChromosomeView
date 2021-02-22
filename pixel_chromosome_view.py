@@ -464,7 +464,7 @@ def show_match_graphics(
                             font=ImageFont.truetype(
                                     os.path.join(font_library_path,
                                                  "Arial.ttf"),
-                                    TICKMARK_FONT_SIZE), fill='black')
+                                    MILESTONE_FONT_SIZE), fill='black')
                     
                 elif base_position % TICKER_SPACING == 0:
                     tickmark_draw.text(
