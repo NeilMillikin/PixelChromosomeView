@@ -354,7 +354,7 @@ def create_comparison_base_strip_image(
     comarison_base_strip_image = Image.new(
             'RGB',
             (width, height),
-            color='white')
+            color=BACKGROUND_COLOR)
     return comarison_base_strip_image
 
 
@@ -417,8 +417,10 @@ def show_match_graphics(
                                     CHROM_TITLE_TEXT_FONT_SIZE), fill='black')
 
     match_shown_number = 0
+    FLAG_TICKMARKS_ARE_PRINTED = False
 
     for match_pair_combination in match_pair_combinations:
+
 
         mp_abbr = "{0}_{1}_Match".format(match_pair_combination[0][:3],
                                          match_pair_combination[1][:3])
@@ -426,12 +428,13 @@ def show_match_graphics(
         base_position = 0
 
         comparison_base_strip_image = create_comparison_base_strip_image(
-                file_lines, HEIGHT_OF_CHROMOSOME_IMAGE)
+                file_lines, HEIGHT_OF_CHROMOSOME_IMAGE + SPACE_BETWEEN_MATCHES)
+
+        tickmark_draw = ImageDraw.Draw(comparison_base_strip_image)
 
         for SNP in processed_and_sorted_SNP_dict_table:
 
             relevant_match = processed_and_sorted_SNP_dict_table[SNP][mp_abbr]
-
             color = 'white'
             if relevant_match == 'noMatchSNP':
                 color = NO_MATCH_SNP_COLOR
@@ -440,13 +443,35 @@ def show_match_graphics(
             elif relevant_match == 'fullMatchSNP':
                 color = FULLY_IDENTICAL_SNP_COLOR
 
-            paste_position = (base_position, 0)
+            paste_position = (base_position, SPACE_BETWEEN_MATCHES)
 
             single_pixel_line = draw_single_SNP_line(WIDTH_OF_SNP_LINE,
                     HEIGHT_OF_CHROMOSOME_IMAGE, color)
 
             comparison_base_strip_image.paste(single_pixel_line,
                     (paste_position))
+
+            if FLAG_TICKMARKS_ARE_PRINTED is False:
+                
+
+                if base_position % MILESTONE_SPACING == 0:
+                    tickmark_draw.multiline_text(
+                            (base_position,
+                            SPACE_BETWEEN_MATCHES + MILESTONE_VERTICAL_POSITION),
+                            "{:0.1f}\n|".format(SNP / 1000000),
+                            font=ImageFont.truetype(
+                                    os.path.join(font_library_path,
+                                                 "Arial.ttf"),
+                                    TICKMARK_FONT_SIZE), fill='black')
+                    
+                elif base_position % TICKER_SPACING == 0:
+                    tickmark_draw.text(
+                            (base_position,
+                             SPACE_BETWEEN_MATCHES + TICKER_VERTICAL_POSITION),
+                            ".",
+                            font=ImageFont.truetype(
+                                os.path.join(font_library_path, "Arial.ttf"),
+                                TICKMARK_FONT_SIZE), fill='black')
 
             base_position += 1
 
@@ -479,6 +504,7 @@ def show_match_graphics(
                 mp_abbr, font=arial, fill='black')
 
         match_shown_number += 1
+        FLAG_TICKMARKS_ARE_PRINTED = True
 
     chrom_whole_page_image.show()
 
