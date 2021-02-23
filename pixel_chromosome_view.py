@@ -55,7 +55,7 @@ from pixel_config import *
 
 VERBOSITY = 2
 
-this_dir = os.path.dirname(os.path.realpath('__file__'))
+this_dir = os.path.dirname(os.path.abspath(inspect.stack()[0][1]))
 font_library_path = os.path.join(this_dir, "fonts")
 
 helpful_debugging_utility_usages = """
@@ -143,7 +143,6 @@ def get_match_pixel_dicts_for_siblings_to_render(
     """
     match_SNP_values_dict = {}
 
-    this_dir = os.path.dirname(os.path.realpath('__file__'))
     data_dir_name = DATA_FILE_DIRECTORY
     data_file_dir = os.path.join(this_dir, "{0}".format(data_dir_name))
     source_data_file_names = os.listdir(data_file_dir)
