@@ -8,7 +8,7 @@ NOTE: raw DNA file names must:
 1) contain name of source vendor (i.e. Ancestry, 23andMe, MyHeritage, etc
 2) contain person's name exactly as listed in 'siblings_to_render' below
 3) contain the word 'raw'
-4) lastly, raw data musst must be in  .txt files
+4) lastly, raw data must must be in  .txt files
 
 example: 23andMe_JULIE_raw_dna.txt
 

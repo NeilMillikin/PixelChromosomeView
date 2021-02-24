@@ -177,11 +177,15 @@ def get_match_pixel_dicts_for_siblings_to_render(
                 if 'Ancestry' in kr_raw_file_name:
                     if str(raw_row[1]) != str(CHROMOSOME_TO_RENDER):
                         continue
+                    if raw_row[3] not in ['A', 'C', 'G', 'T']:
+                        pass
                     raw_row_data = (raw_row[3], raw_row[4])
 
                 else:
                     if str(raw_row[1]) != str(CHROMOSOME_TO_RENDER):
                         continue
+                    if raw_row[3][0] not in ['A', 'C', 'G', 'T']:
+                            pass
                     raw_row_data = (raw_row[3][0], raw_row[3][1])
 
                 match_SNP_values_dict[known_relative][
@@ -198,9 +202,9 @@ def get_common_keys(
         match_SNP_values_dict):
     """
     Read and compare all matches, and get a list of ONLY those
-    SNP locatiions ('rsid') that are represented in ALL of the matches.
+    SNP locations ('rsid') that are represented in ALL of the matches.
     
-    Otherwise you will get blank spots, chromosome images of different lenthts,
+    Otherwise you will get blank spots, chromosome images of different lengths,
      or simply generate errors when trying to compare them.
     """
     list_of_match_pixel_dicts = []
